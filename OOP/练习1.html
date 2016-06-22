@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>oop</title>
+	<script>
+		/*var obj = new Object();
+		obj.name = 'xx'; //属性
+		obj.showName = function(){ //方法
+			alert(obj.name);
+		};
+		obj.showName();//调用方法*/
+
+		/*function createPerson(name){
+			var obj = new Object();
+			obj.name = name;
+			obj.showName = function(){
+				alert(this.name);
+			};
+			return obj;
+		}
+		createPerson('xx').showName(); 
+		createPerson('YY').showName();*/
+
+		/*function createPerson(name){
+			var obj = new Object();
+			obj.name = name;
+			obj.showName = function(){
+				alert(this.name);
+			};
+			return obj;
+		}
+
+		var p1 = createPerson('xx');
+		p1.showName();
+		var p2 = createPerson('ww');
+		p2.showName();*/
+
+		function CreatePerson(name){//构造函数
+			this.name = name;
+			this.showName = function(){
+				alert(this.name);
+			};
+			this.add = function(){
+				alert(this);
+			};
+		}
+
+		var p1 = new CreatePerson('qq');
+		p1.showName();
+		p1.add();//object
+		var p2 = new CreatePerson('pp');
+		p2.showName();
+		p2.add();//object
+
+	</script>
+</head>
+
+<body>
+	
+</body>
+</html>

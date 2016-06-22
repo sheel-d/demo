@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>oop</title>
+	<script>
+		/*
+		原型->prototype ：重写对象方法，让相同方法在内存中存在一份
+			面向对象的原则：
+				相同的属性和方法可以加载到原型上
+				混合的编程模式
+			面向对象的写法：
+				构造函数加属性
+				原型加方法
+		把原型看作是css中的class
+		普通的方法看作是：css中的style
+		*/
+
+		/*普通方法*/
+
+		/*var arr1 = [1,2,3,4,5];
+		var arr2 = [2,2,2,2,2];
+
+		arr1.sum = function(){
+			var result = 0;
+			for(var i=0;i<this.length;i++){
+				result += this[i]
+			}
+			return result;
+		};
+		arr2.sum = function(){
+			var result = 0;
+			for(var i=0;i<this.length;i++){
+				result += this[i]
+			}
+			return result;
+		};
+
+		alert(arr1.sum()); //15
+		alert(arr2.sum()); //10*/
+
+		/*原型的写法：prototype要写在构造函数的下面*/
+
+		var arr1 = [1,2,3,4,5];
+		var arr2 = [2,2,2,2,2];
+
+		Array.prototype.sum = function(){
+			var result = 0;
+			for(var i = 0;i<this.length;i++){
+				result += this[i];
+			}
+			return result;
+		};
+
+		alert(arr1.sum()); //15
+		alert(arr2.sum()); //10
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>oop</title>
+	<script>
+		/*原型与普通方法的优先级*/
+
+		/*var arr = [];
+		arr.number = 10;
+		Array.prototype.number = 20;
+		alert(arr.number);//10*/
+
+		/*var arr = [];
+		
+		Array.prototype.number = 20;
+		alert(arr.number); //20;*/
+
+		/*工厂方式之原型*/
+
+		function CreatePerson(name){
+			this.name = name;
+		}
+		CreatePerson.prototype.showName = function(){
+			alert(this.name);
+		};
+
+		var p1 = new CreatePerson('oop');
+		p1.showName(); //oop
+		var p2 = new CreatePerson('ool');
+		p2.showName(); //ool
+		alert( p1.showName == p2.showName ); //true
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
