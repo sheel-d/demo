@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包</title>
+</head>
+<body>
+	<span>没有使用闭包</span>
+	<ul id="list1">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	<span>闭包</span>
+	<ul id="list2">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	<span>使用ES6-let</span>
+	<ul id="list3">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	<script>
+		var oUl1 =document.getElementById('list1');
+		var oUl2 =document.getElementById('list2');
+		var oUl3 =document.getElementById('list3');
+
+		var aLi1 =oUl1.getElementsByTagName('li');
+		var aLi2 =oUl2.getElementsByTagName('li');
+		var aLi3 =oUl3.getElementsByTagName('li');
+
+		var len = aLi3.length;
+
+		for(var i = 0; i < len; i++){
+			aLi1[i].onclick = function(){
+				alert(i);
+			};
+		}
+
+		for(var m = 0; m < len; m++){
+			(function(m){
+				aLi2[m].onclick = function(){
+					alert(m);
+				};
+			})(m);
+		}
+
+		for(let n = 0; n < len; n++){
+			aLi3[n].onclick = function(){
+					alert(n);
+				};
+		}
+	</script>
+</body>
+</html>
