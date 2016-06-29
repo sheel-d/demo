@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 200px;
+            height: 200px;
+            margin: 100px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #000;
+        }
+        #ul1{
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        document.ontouchmove = function(ev){ ev.preventDefault(); };//阻止默认事件
+        window.onload = function(){
+            var oDiv = document.getElementById('div1');
+            var oUl = document.getElementById('ul1');
+
+            var downY = 0;
+            var downTop = 0;
+            var bBtn = true;
+
+            for(var i=0;i<100;i++){
+                var oLi = document.createElement('li');
+                oLi.innerHTML = i;
+                oUl.appendChild(oLi);
+            }
+            oUl.ontouchstart = function(ev){
+                var touchs = ev.changedTouches[0];
+                downY = touchs.pageY;
+                downTop = this.offsetTop;
+
+                oUl.ontouchmove = function(ev){
+                    var touchs = ev.changedTouches[0];
+                    if(this.offsetTop >= 0){
+                        if(bBtn){
+                            bBtn = false;
+                            downY = touchs.pageY;
+                        }
+                        this.style.top = (touchs.pageY - downY + downTop)/3 + 'px';
+                    }else if(this.offsetTop <= oDiv.offsetHeight - oUl.offsetHeight){
+                        if(bBtn){
+                            bBtn = false;
+                            downY = touchs.pageY;
+                        }
+                        this.style.top = (touchs.pageY - downY + downTop)/3 + ( oDiv.offsetHeight - oUl.offsetHeight ) + 'px';
+                    }else{
+
+                    }
+                    this.style.top = touchs.pageY - downY + downTop + 'px';
+                };
+                oUl.ontouchend = function(){
+                    this.ontouchmove = null;
+                    this.ontouchend = null;
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <ul id="ul1"></ul>
+    </div>
+</body>
+</html>

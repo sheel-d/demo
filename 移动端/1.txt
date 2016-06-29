@@ -1,0 +1,19 @@
+
+滚动条与内容是怎么联动？
+    以2.html页面的布局为例 -> 滚动条的高：div1.height/ul1.height = 滚动条的高/div1.height；
+    要对滚动条限制：有一个最大值和最小值
+
+
+在移动端中得先阻止默认的事件：
+    document.addEventListener('touchmove',function(ev){
+        ev.preventDefault();//阻止默认事件
+    },false);
+然后在进行相应的事件操作。
+在移动端中用
+    untouchstart事件去代替onmousedown事件 ：表示手指在屏幕下的瞬间
+    untouchmove事件去代替onmousemove事件 ：表示手指在屏幕上滑动的时候
+    untouchend事件去代替onmouseup事件 ：表示手指在屏幕上抬起的一瞬间
+
+在移动端中，使用ev对象下的changedTouches是表示手指的一个集合，
+    ev.changedTouches[0]：这个是手指操作的一个集合，代表单指操作的一个集合，
+    在这个下面才能操做pageX，pageY等
