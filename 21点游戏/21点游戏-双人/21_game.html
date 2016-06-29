@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>21_game</title>
+	<link rel="stylesheet" href="21_game.css" />
+	<script src="21_game.js"></script>
+</head>
+<body>
+	<div id="box">
+		<div id="left">
+			<div class="div1">
+				<p class="p1">玩家1</p>
+				<div class="img">
+					<!-- <img src="img/0.gif" class="oo"> -->
+				</div>
+				<p class="p2">
+					<input value="在要一张" type="button">
+					<input value="加注" type="button">
+					<input value="不要了" type="button">
+					<input value="退出" type="button">
+					<input type="button" value="保险">
+				</p>
+				<hr />
+				<b>当前倍数: </b><b>2</b>
+				<hr />
+				<i>输入金额：</i><input type="text" value="0"> 
+				<br />
+				<i>底注：</i><b>4</b>
+				<i>保险：</i><b>0</b>
+				<span>0</span>
+				<i>决定：</i><input type="button" value="1"><input type="button" value="11">
+			</div>
+		</div>
+		<div id="center">
+			<input type="button" value="添加" id="add" disabled />
+			<input type="button" value="开始发牌" id="begin" />
+		</div>
+		<div id="right">
+			<div class="div1">
+				<p class="p1">庄家</p>
+				<div class="img">
+					<!-- <img src="img/0.gif" class="oo"> -->
+				</div>
+				<p class="p2">
+					<input type="button" value="在要一张" />
+					<input type="button" value="不要了" />
+				</p>
+				<span>0</span>
+				<i>决定：</i><input type="button" value="1"><input type="button" value="11">
+			</div>
+		</div>
+		<div id="remind">
+			<p>
+				提示：请点击添加按钮，进行添加游戏玩家!!
+			</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+#box{
+	width: 100%;
+	height: 600px;
+	height:600px;
+	border-radius: 6px;
+	border: 1px solid #000;
+	position: relative;
+	overflow: scroll;
+}
+#left{
+	width: 400px;
+	background: #aaa;
+	border-radius: 6px;
+	border: 1px solid #000;
+}
+.div1{
+	width: 270px;
+	margin: 10px auto;
+	padding: 10px;
+	border-radius: 6px;
+	border: 1px solid #000;
+	background: blue; 
+}
+.div1 .p1{
+	margin: 0 0 10px 0;
+	border-bottom: 1px solid #000;
+	line-height: 20px;
+	text-align: left
+}
+.img{
+	position: relative;
+	z-index: 0;
+}
+.div1 .oo{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+.div1 img{
+	width: 40px;
+	height: 62px;
+	margin-right: 10px;
+	z-index: 0;
+}
+
+.div1 .p2{
+	margin: 10px 0 0 0;
+	border-top: 1px solid #000;
+	text-align: center;
+}
+.div1 .p2 input{
+	margin-top: 5px;
+	border-radius: 6px;
+}
+.div1 span{
+	display: block;
+	border-top: 1px solid #000;
+	text-align: right;
+	line-height: 22px;
+	margin-top: 10px;
+}
+#center{
+	width: 200px;
+	height:100px;
+	background:#000; 
+	border-radius: 6px;
+	border: 1px solid #000; 
+	position: fixed;
+	left: 45%;
+	top: 250px;
+	text-align:center;
+}
+#center input{
+	margin-top: 20px;
+}
+#right{
+	width: 300px;
+	background: red;
+	border-radius: 6px;
+	border: 1px solid #000;
+	position: fixed;
+	right: 20px;
+	top: 194px;
+}
+#remind{
+	cursor: pointer;
+	color: #000;
+	text-align: left;
+	line-height: 20px;
+	position: absolute;
+	left: 40%;
+	top: 0;
+}
