@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>REACT</title>
+	<script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <style>
+        .foo{
+            background-color: red;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+	<div id="demo"></div>
+    <div id="demo1"></div>
+    <div id="demo2"></div>
+    <div id="demo3"></div>
+    <script type="text/babel">
+    	var myDivElement = <div className="foo" />;
+        ReactDOM.render(
+        myDivElement,
+        document.getElementById('demo'),function(){
+            console.log('ok');
+        });
+
+        var MyComponent = React.createClass({
+            render : function(){
+                return (
+                    <h1>hello</h1>
+                )
+            }
+        });
+        ReactDOM.render(
+            <MyComponent />,
+            document.getElementById('demo1'),function(){
+                console.log('ok');
+        });
+
+        var MyComponent = React.createClass({
+            render : function(){
+                return (
+                    <h1>word</h1>
+                )
+            }
+        });
+        var myComponent = <MyComponent someProperty={true}/>;
+        ReactDOM.render(
+        myComponent,
+        document.getElementById('demo2'),function(){
+                console.log('ok');
+        });
+        <!--
+           由于JSX就是JavaScript，一些标识符像 class 和 for 不建议作为 XML 属性名。作为替代，React DOM 使用 className 和 htmlFor 来做对应的属性 
+        -->
+       <!--  var Nav;
+       var app = <Nav color="blue" />;
+       var app = React.createElement(
+       Nav,
+       {
+           color : "blue",
+           border : "1px solid #000",
+           width : "100px",
+           height : "100px"
+           });
+       ReactDOM.render(
+           app,
+           document.getElementById('demo3'),
+           function(){
+               consloe.log('ok');
+           }); -->
+           <!--
+                JSX 表达式总是会当作 ReactElement 执行。具体的实际细节可能不同。一种优化的模式是把 ReactElement 当作一个行内的对象字面量形式来绕过 React.createElement 里的校验代码。
+           -->
+    </script>
+</body>
+</html>

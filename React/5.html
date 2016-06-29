@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+    <div id="demo"></div>
+    <!--
+        组件划分：
+            总组件：MainComponent
+                消息组件：MesComponent
+                列表展示组件：ListComponent
+                    列表组件：ItemComponent
+
+        数据存储结构：
+        [{userName:用户名,content:留言内容,_id:Date.now()}]
+    -->
+    <script type="text/babel">
+        //总组件
+        var MainComponent = React.createClass({
+            render:function(){
+                return (
+                        <div>
+                            <MainComponent />
+                            <ListComponent />
+                        </div>
+                )
+            }
+        });
+        ReactDOM.render(<MainComponent />,document.getElementById('demo'));
+
+        //消息组件
+        var MesComponent = React.createClass({
+            render:function(){
+                return (
+                        <form>
+                            <div>
+                                <label for="#">用户名</label>
+                                <input type="text" />
+                            </div>
+                            <div>
+                                <label for="#">留言内容</label>
+                                <textarea name="2" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <div>
+                                <div></div>
+                            </div>
+                        </form>
+                )
+            }
+        });
+
+        //列表展示组件
+        var ListComponent = React.createClass({
+            render:function(){
+                return (
+                        <div>
+                            <h3>留言回复</h3>
+                            <h2></h2>
+                        </div>
+                )
+            }
+        });
+
+        //列表组件
+        var ItemComponent = React.createClass({
+            render:function(){
+                return ()
+            }
+        });
+
+    </script>
+</body>
+</html>

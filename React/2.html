@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="demo"></div>
+<script type="text/babel">
+
+    var FirstComponent = React.createClass({
+        render:function(){//一个组件里面只有一个顶层标签，里面可以有多个标签
+            return (
+                    /*<h1>hello word</h1> //这样会报错
+                    <input type="text" />*/
+                    /* 只能写这样 */
+                    <div>
+                        <h1>hello word</h1>
+                        <h3>{this.props.title}</h3>
+                        <input type="text" />
+                        <input type="button" value="发布内容" />
+                        <input type="button" value={this.props.sendName} />
+                    </div>
+            )
+        }
+    });
+
+    var title = 'xyz';
+    var send = "提交";
+
+    //{alert(0)} => 弹出 0
+
+    ReactDOM.render(
+            <FirstComponent title={title} sendName={send} />,
+            document.getElementById("demo"),
+            function(){
+                console.log("OK");
+            });
+</script>
+</body>
+</html>

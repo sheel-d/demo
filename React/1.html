@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+    <div id="demo"></div>
+    <script type="text/babel">
+
+        var FirstComponent = React.createClass({ //定义一个组件,组件首字母必须是大写，小写是没有效果的
+            render:function(){
+                return (
+                        <h1>hello word</h1>
+                )
+            }
+        });
+        ReactDOM.render(
+                <FirstComponent />,//这里写成单标签还是双标签的是可以的
+                document.getElementById("demo"),
+                function(){
+                    console.log("OK");
+                });
+
+        /*ReactDOM.render( //可以将这个写成上面的的组件形式
+                <h1>hello word</h1>,
+                document.getElementById("demo"),
+                function(){//页面渲染完后的回调函数
+                    console.log("OK");
+                });*/
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+
+
+React是什么？
+    用于构建用户界面的javascript库
+    MVC架构的V层
+    http://facebook.github.io/react/
+    http://reactjs.cn react中文网
+    http://react-china.org/
+    http://ant.design/
+
+怎么使用React？
+	下载静态文件
+		react.js（react-with-addons.js）、
+		react-dom.js、browser.js
+	nodejs环境
+		webpack、babel、react、react-dom等模块
+
+React的特点
+	虚拟DOM
+		通过DOM diff算法，只会更新有差异化的部分，不用渲染整个页面，从而提高效率
+
+	组件化
+		  把页面分成若干个组件，组件中包含逻辑结构和样式
+		  组件只包含自身逻辑，更新组件的时候可以预测，利于维护
+		  页面拆分多个组件，可以做到重用
+
+	单向数据流
+		数据是从顶层组件传递到子组件中
+		数据可控
+
+JSX是什么
+    JavaScript XML
+    JSX是React编写组件的一种语法规范，可以看为是javaScript的扩展，
+    它支持将HTML和JS混写在一起，最后编译为常规的JavaScript，方便浏览器解析
+
+props和state
+    props
+	    组件初始要渲染的数据，不可改变
+
+    state
+	    组件状态发生改变，调用render重新渲染
+
+在react里面写html标签时，要是html标签里面要写class；例如：class="box"，需要写成className = "box"
+
+
+
+
+        ->      React
+
+    在script标签里面写React需要将type的属性改成text/babel
+
+    React.createClass()：是创建一个新的 React 组件
+        其中最重要的方法是 render ，该方法返回一棵 React 组件树，这棵树最终将会渲染成 HTML
+    ReactDOM.render()：实例化根组件，启动框架，把标记注入到第二个参数指定的原生的 DOM 元素中
+
+    例如：
+            var CommenBox = React.createClass({
+                render : function(){
+                    return (
+                        <h1>hello word</h1>
+                    )
+                };
+            });
+            ReactDom.render(
+                <CommenBox />,
+                document.getElementById('demo')
+            );
+    注意：
+        原生 HTML 元素名以小写字母开头，而自定义的 React 类名以大写字母开头。
+        在写HTML元素的位置，最外层的HTML标签只有一个，里面的HTML标签则，则没有限制。
+
+    注意：
+        如何整合 HTML 标签和我们所创建的组件的。
+            HTML 组件就是普通的 React 组件，就和你定义的组件一样，只不过有一处不同。
+            JSX 编译器会自动重写 HTML 标签为 React.createElement(tagName) 表达式，其它什么都不做。
+            这是为了避免全局命名空间污染。
+
+    props 是不可变的：它们从父组件传递过来，“属于”父组件。
+    为了实现交互，我们给组件引入了可变的 state 。
+    this.state 是组件私有的，可以通过调用 this.setState() 来改变它。
+    当 state 更新之后，组件就会重新渲染自己。
+
+    在React里面写行内样式是这样写的：
+     第一种写法：style={{color:'red'}}
+     第二种写法：是在render：function（）{}里面定义一个对象styleObj，
+     然后用style={styleObj}去引用，不过像font-size这种两个单词的属性，
+     需要写成fontSize这样的形式。
+
+
+     React Components的生命周期
+        三个状态：Mounted ----> Update ------> Unmounted
+        Mounted：React Components被render解析生成对应的DOM节点被插入浏览的DOM结构的过程
+        Update：一个mounted的React Components被重新render的过程
+        Unmounted：一个mounted的React Components对应的DOM节点被从DOM结构中移除的这样一个过程
+     每一个状态React都封装了对应的hook函数
+
+     Mounted阶段
+        mounting前被调用：componentWillMount
+        mounting后被调用：componentDidMount
+        初始化React Components state的函数：getInitialState()
+        -->2.html
+/*  apply() call() bind()[ES5里面才有的] --> 改变this指向*/
+     Update阶段
+        接收新的props值时被调用：componentWillReceiveProps
+        接收到值后判断是否需要更新DOM结构：shouldComponentUpdate
+        Update前被调用：componentWillUpdate
+        Update后被调用：componentDidUpdate
+        一般这四个函数是很少改写的，
+     Unmounted阶段
+        当我们要把一个React Components销毁掉的时候就是Unmounted阶段
+        componentWillUnmount：在这个函数中可以去执行一些释放内存资源，图片资源
+        一般来说使用的很少

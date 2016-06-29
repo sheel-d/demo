@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>REACT</title>
+	<script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+	<div id="demo"></div>
+    <script type="text/babel">
+    	var HelloWord = React.createClass({
+    		render : function(){
+    			return (
+					<p>
+						Hello,<input type="text" placeholder="your name here" />!
+						It is {this.props.date.toTimeString()}
+					</p>
+    			);
+    		}
+    	});
+    	setInterval(function(){
+    		ReactDOM.render(
+    			<HelloWord date={new Date()} />,
+    			document.getElementById('demo')
+    		);
+    	},500);
+    </script>
+</body>
+</html>

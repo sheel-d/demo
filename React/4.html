@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="demo"></div>
+<script type="text/babel">
+
+    var FirstComponent = React.createClass({
+        getInitialState:function(){
+            return {
+                mes:this.props.value
+            }
+        },
+        render:function(){
+            return (
+                    <div>
+                        <h1>{this.props.title}</h1>
+                        <!--<input type="text" value={this.props.value} />写成这样会报错，会提示让与onchang事件一起用-->
+                        <input type="text" value={this.state.mes} onChange={this.changeHandle} />
+                        <input type="button" value={this.props.sendName} />
+                        <p>{this.state.mes}</p>
+                    </div>
+            )
+        },//双向绑定失败
+        changeHandle:function(ev){
+            //console.log( ev.target.value );
+            this.setState({mes:ev.target.value});
+        }
+    });
+
+    var obj = {
+        title : "hello word",
+        sendName : "提交",
+        value : "请输入留言"
+    };
+
+    ReactDOM.render(
+            <FirstComponent {...obj} />,
+            document.getElementById("demo"),
+            function(){
+                console.log("OK");
+            });
+</script>
+</body>
+</html>

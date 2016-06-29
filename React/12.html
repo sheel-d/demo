@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>REACT</title>
+	<script src="js/react.js"></script>
+	<script src="js/react-dom.js"></script>
+	<script src="js/browser.min.js"></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<!--
+	在react中添加css样式时，要把css样式写成一个对象
+	-->
+	<script type="text/babel">
+		var style = {
+			color : "red",
+			border : "1px solid #000"
+		}; 
+		var HelloWord = React.createElement({
+			getName:function(){
+				if(this.props.name)
+					return this.props.name
+				else
+					return "Word"
+			},
+			render:function(){
+				return (<p>Hello,{this.getName()}</p>);
+			}
+		});
+		ReactDOM.render(
+			<HelloWord name='li' />,
+			document.getElementById('demo'),
+			function(){
+				console.log('ok');
+			});
+	</script>
+</body>
+</html>

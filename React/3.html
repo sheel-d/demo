@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+<div id="demo"></div>
+<script type="text/babel">
+
+    var FirstComponent = React.createClass({
+        render:function(){
+            console.log(this.props);
+            return (
+                    <div>
+                        <h1>{this.props.title}</h1>
+                        <input type="text" />
+                        <input type="button" value={this.props.sendName} />
+                    </div>
+            )
+        }
+    });
+
+    var obj = {
+        title : "hello word",
+        sendName : "提交"
+    };
+
+    ReactDOM.render(
+            /*<FirstComponent title={obj.title} sendName={obj.sendName} />,*/
+            /* 当有多个数据的时候，可以这样写 */
+            <FirstComponent {...obj} />,
+            document.getElementById("demo"),
+            function(){
+                console.log("OK");
+            });
+</script>
+</body>
+</html>

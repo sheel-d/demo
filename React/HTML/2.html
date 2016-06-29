@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React</title>
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="../js/browser.min.js"></script>
+</head>
+<body>
+<div id="demo"></div>
+<script type="text/babel">
+    var Hello = React.createClass({
+        getInitialState : function(){
+            alert('init');
+            return {
+                opacity : 1.0,
+                fontSize : "12px"
+            }
+        },
+        render : function(){
+            return <h1 style={{opacity:this.state.opacity,fontSize:this.state.fontSize}}>{this.props.name}</h1>;
+        },
+        componentWillMount : function(){
+            alert('will');
+        },
+        componentDidMount : function(){
+            alert('did');
+
+            var _self = this;
+            window.setTimeout(function(){
+                _self.setState({
+                    opacity:0.5,
+                    fontSize:'44px'
+                });
+            },1000);
+        }
+    });
+    ReactDOM.render(
+            <Hello name="HELLO" />,
+            document.getElementById('demo')
+    );
+</script>
+</body>
+</html>
