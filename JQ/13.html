@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 50px;
+            background: #000;
+        }
+        #div2{
+            width: 100px;
+            height: 500px;
+            background: red;
+            display: none;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            $("#div1").eq[0].onmouseover(function(){
+                alert(1);
+                $("#div2").css('display','block');
+            }).onmouseout(function(){
+                $("#div2").css('display','none');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+</html>

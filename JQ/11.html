@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 100px;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            var disX = 0;
+            var disY = 0;
+            var $div = $('#div1');
+            $div.on('mousedown',function(ev){
+                disX = ev.pageX - $(this).offset().left;
+                disY = ev.pageY - $(this).offset().top;
+
+                $(document).on('mousemove',function(ev){
+                    $div.css('left',ev.pageX -disX);
+                    $div.css('top',ev.pageY -disY);
+                });
+                $(document).on('mouseup',function(){
+                    $(this).off();
+                });
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="div1">div</div>
+</body>
+</html>

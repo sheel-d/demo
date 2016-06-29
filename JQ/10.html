@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            margin-top: 300px;
+            width: 470px;
+            height: 150px;
+            border: 1px solid #000;
+        }
+        div img{
+            width: 470px;
+            height: 150px;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            toChange();
+            $(window).scroll(toChange);
+            function toChange(){
+                $('img').each(function(i,elem){
+                    if( $(elem).offset().top < $(window).height() + $(document).scrollTop() ){
+                        $(elem).attr('src',$(elem).attr('_src') );
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div><img _src="img/2.jpg"></div>
+    <div><img _src="img/3.jpeg"></div>
+    <div><img _src="img/5.jpg"></div>
+    <div><img _src="img/6.jpg"></div>
+    <div><img _src="img/7.png"></div>
+</body>
+</html>

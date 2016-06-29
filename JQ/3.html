@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       ul{
+           display: none;
+       }
+        .box{
+            display: block;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            $('input').click(function(){
+                $('ul').toggleClass('box');
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="button" value="点击">
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            margin: 10px;
+            width: 340px;
+            height:340px;
+            border: 1px solid #000;
+            padding: 10px 0 0 10px;
+        }
+        #div1 div {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            width: 100px;
+            height: 100px;
+            float: left;
+            border: 1px solid #000;
+        }
+        .active{
+            background: red;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            var iNow = 0;
+           $('input').click(function(){
+                var step = parseInt(Math.random() * 20 + 5);
+               var timer = setInterval(function(){
+                   $('div').attr('class','');
+                   $('div').eq(iNow).attr('class','active');
+                   iNow++;
+                   step--;
+                   if(step==0){
+                       clearInterval(timer);
+                       alert('0K');
+                   }
+                   if(iNow == $('div').length){
+                       iNow = 0;
+                   }
+               },100);
+           });
+            $()
+        });
+    </script>
+</head>
+<body>
+<input type="button" value="抽奖">
+    <div id="div1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+    </div>
+</body>
+</html>

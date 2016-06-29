@@ -1,0 +1,301 @@
+什么是JQ
+  js的升级版，写越少的代码，做越多的事情
+
+学习JQ的基础
+  HTML CSS Javascript 后台了解
+
+JQ官网
+  http://jquer.com/
+
+jq选择元素的风格是跟css风格特别类似
+
+JQ方法函数化
+  事件
+    -click()
+  内容
+    -html()
+
+JS与JQ关系
+  之间不能混写
+  函数中返回原生this，$()选择元素
+  例子：选择颜色填充方块
+
+取值与赋值的关系
+  通过参数决定
+  属性
+    - attr()
+  值
+    - val()
+  多原生取值
+    第一个元素
+
+强大的$()
+  加载
+    - $(function(){});
+  属性选择
+    - [=]
+    - [^=]
+    - [$=]
+    - [*=]
+    - 引号的问题
+
+JQ的链式操作
+  $().css().html().click()
+  针对设置的时候
+
+JQ实战小技巧
+  命名的规范
+    - $div $span
+  容错处理
+    - $()
+
+集合的长度
+  size()
+  length
+  $()获取到的都是一个集合,那怕获取到的是一个元素
+
+JQ实战小技巧
+  利用length判断元素是否存在
+  例子：删除指定颜色的方块
+
+class的操作
+  addClass()   添加class
+  removeClass()
+  toggleClass()
+
+显示隐藏
+  show()/hide()
+    与css()的区别
+  例子：点击弹出菜单
+
+节点的选择
+  prev()   next()
+  prevAll() nextAll()
+  siblings()
+    - 参数的筛选功能
+
+JQ实战小技巧
+  利用参数修复查找节点问题
+  例子：点击弹出菜单
+
+下标：eq()
+
+节点的选择
+  first()
+  last()
+  slice()
+  children()
+  find()
+    children和find区别
+
+JQ实战小技巧
+  避免复杂的选择器操作，而采用find操作
+
+节点的选择
+   parent()
+   parents()
+   closets()
+     - 精准的查找能力，实战开发之王
+     - 找的是最近的唯一一个元素
+     - 例子：点击查找指定节点
+
+节点的操作
+  创建节点
+    - $(<>)
+    - 比原生JS更强大的创建方式
+  添加节点
+    - insertBefore() before()
+    - insertAfter() after()
+    - appendTo() append()
+    - prependTo() prepend()
+    - 两种写法的区别
+
+JQ实战小技巧
+  添加html形式的操作与元素形式的操作
+
+节点的操作
+  remove()
+  clone()
+    - 默认的剪切操作
+    - 如何克隆事件
+    - 例子：节点上移下移
+
+JQ中的索引
+  index()
+    - 第一种用法，兄弟中的排行
+    - 第二种用法，筛选后的排行
+    - 善于利用索引做实际开发
+    - 例子：选项卡
+
+JQ中的遍历
+  each()
+    - 回调函数的两个参数
+    - this指向
+    - return false
+
+JQ包装对象
+  wrap()
+  wrapAll()
+  wrapInner()
+  unwrap()
+  例子 ：管理员与普通用户状态控制
+
+JQ转原生JS
+  get()
+    - 与eq的区别
+    - 为什么要转，比如：
+      >> 获取内容的高度
+      >>元素之间的比较
+
+元素的尺寸
+  width()   height()
+  innerWidth()  innerHeight()
+  outerWidth()  outerHeight()
+  参数的作用
+  与原生JS的区别
+
+  JQ实战小技巧
+    可视区的尺寸
+    页面的尺寸
+
+滚动距离
+  scrollTop()
+  scrollLeft()
+
+元素距离
+  offset()
+    - left top
+  position()
+    - left top
+    - 不认margin
+
+JQ的事件
+  Event对象
+    - pageX,pageY
+      >> 与client的区别
+    - which
+    - target
+    - stopPropagation()
+    - preventDefault()
+    - return false
+
+JQ实战小技巧
+  多次添加on的处理方式
+  实例：拖拽效果
+
+JQ的事件
+  delegate()
+    - 委托的好处
+    - ev.delegateTarget
+  undelegate()
+
+JQ的事件
+  trigger()
+    - 比click()形式更强大
+    - 事件的命名空间
+    - 实例：主动触发的添加内容
+
+工具方法
+  $.type()
+    - 比原生typeof更强大
+  $.isFunction()
+  $.isNumeric()
+  $.isArray()
+  $.isWindow()
+  $.isEmptyObject()
+  $.isPlainObject()
+
+工具方法
+  $.extend()
+    - 对象继承操作
+    - 深拷贝操作
+  $.proxy()
+    - 两处传参的区别
+
+JQ实战小技巧
+  利用This改指向，更加方便
+
+JQ中的运动
+  时间的概念
+  show(),hide(),toggle()
+    - fast normal slow
+  fadeIn(),fadeOut(),fadeToggle()
+    - 有默认的时间normal
+  slideDown(),slideUp(),slideToggle()
+    - 有默认的时间normal
+
+JQ中的运动
+  animate()
+    - 参数的作用
+    - 数值的运算操作
+    - 配置参数step的作用
+      >> duration easing complete
+    - 队列的概念
+      >> 其他元素不会存入队列
+    - 链式运动
+    - delay()
+
+JQ中的运动
+  stop()
+    - 参数的作用
+  finish()
+
+  JQ实战小技巧
+    运动的队列问题
+    实例：淘宝轮廓图
+
+工具方法
+  $.parseJSON()
+  $.parseHTML()
+  $.parseXML()
+  $.isCMLdOC()
+
+工具方法
+  $.ajax()
+    - 什么是ajax
+    - 提交数据，查询数据
+    - url
+    - success
+    - type
+    - data
+    - error
+    - dataType
+    - async
+
+工具方法
+  实例：ajax版本的选项卡
+  $.get()
+    - 参数的作用
+  $.post()
+    - 参数的作用
+
+JQ插件
+  $.browser()：
+    - http://jquery.thewikies.com/browser/
+  $.cookie
+    - https://github.com/carhartl/jquery-cookie#readm
+  e-calendar：效果的插件
+    - http://www.jq22.com/jquery-info541
+    - 用法和JQ是相同的
+
+UI组件
+  jQuery UI
+    - http://jqueryui.com/
+    - 交互、部件、特效、工具
+    - 配置参数、方法、自定义事件
+    - css主题
+
+ jQuery EasyUi
+    - http://www.jeasyui.com/
+    - 更强大的后台交互控件
+    - datagrid操作
+
+JQ高级
+
+清空内容
+    html("")
+    empty()
+删除节点
+    remove()
+    detach()
+

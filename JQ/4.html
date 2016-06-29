@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            display: none;
+        }
+        .box{
+            display: block;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function(){
+            $('input[type=button]').click(function(){
+                //$(this).next().toggleClass('box');
+                $(this).nextAll('ul').toggleClass('box');
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="button" value="点击">
+    <input type="hidden">
+    <ul>
+        <li>11111</li>
+        <li>22222</li>
+        <li>33333</li>
+        <li>44444</li>
+    </ul>
+</body>
+</html>
