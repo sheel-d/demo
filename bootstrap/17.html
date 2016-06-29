@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .my-btnStyle button{
+            width: 85px;
+            height: 50px;
+            border: none;
+            background: #f6f8f8;
+        }
+        .my-btnStyle .dropdown-menu{/*运动的效果*/
+            animation: 1s linear fedeIn;
+        }
+        @keyframes fadeIn {
+            0%{
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <br><br>
+    <div class="btn-group my-btnStyle">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Plugins
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+    if( window.navigator.userAgent.toLowerCase().indexOf('mobile')==-1 ){
+        //判断是不是pc端，是pc端就走里面的代码
+        /*$('.dropdown-toggle').on('mouseover',function(){
+         alert(1);
+         });*/
+        var timer = null;
+        $('.dropdown-toggle').hover(function(){
+            clearTimeout(timer);
+            //鼠标移入
+            $('.btn-group').addClass('open');
+        },function(){
+            //鼠标移出
+            timer = setTimeout(function(){
+                $('.btn-group').removeClass('open');
+            },100);
+        });
+
+        $('.dropdown-menu').hover(function(){
+            clearTimeout(timer);
+        },function(){
+            //鼠标移出
+            timer = setTimeout(function(){
+                $('.btn-group').removeClass('open');
+            },100);
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据结构之螺旋矩阵</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#ul1{
+			margin: 20px auto;
+			border: 1px #fff solid;
+			border-bottom: none;
+			border-right: none;
+			overflow: hidden;
+			background-image: url('img/bg.jpg');
+			background-size: cover;
+		}
+		#ul1 li{
+			float: left;
+			border: 1px #fff solid;
+			border-top: none;
+			border-left: none;
+			background-size: cover;
+		}
+	</style>
+</head>
+<body>
+	<ul id="ul1"></ul>
+	<script>
+		var oUl = document.querySelector('#ul1');
+		var aLi = oUl.getElementsByTagName('li');
+		var size = 8;
+		var len = size * size;
+		var sizeGird = 50;
+
+		oUl.style.width = (sizeGird + 1) * size + 'px';
+
+		for(let i=0;i<len;i++){
+			var oLi = document.createElement('li');
+			oLi.style.width = sizeGird + 'px';
+			oLi.style.height = sizeGird + 'px';
+			oUl.appendChild(oLi);
+		}
+		
+		/*找拐点：
+			以坐标轴的思想来找，第一个拐点，y轴是0，x轴是慢慢增大的；第二个拐点是，x轴不变，y轴增大；第三个拐点，y轴不变，x轴是慢慢减小的；第二个拐点是，x轴不变，y轴减小；以此类推。
+		*/
+		var row = 0; //行
+		var col = 0;  //列
+		var min = 0; //环数
+		var max = size - 1;
+		var arr = [];
+
+		for(let n = 0;n<len;n++){
+			//aLi[row * size + col].innerHTML = n;
+			arr.push( aLi[row * size + col] );
+			//这个是找拐点处
+			if( row == min && col < max ){
+				col = col + 1;
+			}else if( col == max && row < max ){
+				row = row + 1;
+			}else if( row == max && col > min ){
+				col = col - 1;
+			}else if( col == min && row > min ){
+				row = row - 1;
+			}
+			//这个是缩短环数
+			if( row - 1 == min && col == min ){
+				min = min + 1;
+				max = max - 1;
+			}
+		}
+
+		/*var iNow = 0;
+		setInterval(function(){
+
+			for(let m = 0; m < len; m++){
+				aLi[m].style.backgroundImage = '';
+			}
+
+			arr[iNow].style.backgroundImage = 'url(img/1.jpg)';
+			iNow++;
+		},200);*/
+		/* 数组里面的li才是螺旋矩阵的分布 */
+		var bgArr = []; //存放bg图片有关的数组
+		for(let m = 0; m < len; m++){
+			if(m%5 == 0){
+				var bgImg = 'url(img/' + Math.floor(Math.random()*11 + 1) + '.jpg)';
+				arr[m].style.backgroundImage = bgImg;
+				bgArr.push([m,bgImg]);
+			}
+		}
+
+		run();
+		setInterval(run,1000);
+
+		function run(){
+			for(let m = 0; m < len; m++){
+				aLi[m].style.backgroundImage = '';
+			}
+
+			for( let b = 0; b < bgArr.length;b++){
+				bgArr[b][0] = bgArr[b][0] + 1;
+				if( arr[bgArr[b][0]] ){
+					arr[ bgArr[b][0] ].style.backgroundImage = bgArr[b][1];
+				}else{
+					bgArr.pop();//删除最后一个
+					var bgImg = 'url(img/' + Math.floor(Math.random()*11 + 1) + '.jpg)';
+					bgArr.unshift([0,bgImg]);//添加到第一个
+				}
+			}
+		}
+	</script>
+</body>
+</html>

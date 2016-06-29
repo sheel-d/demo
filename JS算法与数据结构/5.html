@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>行列互换矩阵</title>
+	<style>
+		*{
+			padding: 
+		}
+		*{
+			margin:0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#ul1{
+			margin: 20px auto;
+			border: 1px #000 solid;
+			border-bottom: none;
+			border-right: none;
+			overflow: hidden;
+		}
+		#ul1 li{
+			float: left;
+			border: 1px #000 solid;
+			border-top: none;
+			border-left: none;
+			background-size: cover;
+		}
+	</style>
+</head>
+<body>
+	<ul id="ul1"></ul>
+	<script>
+		var oUl = document.querySelector('#ul1');
+		var aLi = oUl.getElementsByTagName('li');
+		var size = 5;
+		var len = size * size;
+		var sizeGird = 50;
+		var arr = [];
+
+		oUl.style.width = (sizeGird + 1) * size + 'px';
+
+		for(let i=0;i<len;i++){
+			var oLi = document.createElement('li');
+			oLi.style.width = sizeGird + 'px';
+			oLi.style.height = sizeGird + 'px';
+			oLi.innerHTML = i;
+			arr.push(i);
+			oUl.appendChild(oLi);
+		}
+
+		//arr = changeXY(arr);
+		arr = changeXY(arr,size);
+
+		for(let n=0;n<aLi.length;n++){
+			aLi[n].innerHTML = arr[n];
+		}
+
+		/*function changeXY(arr){//行列互换矩阵的方法
+			var newArr = [];
+			
+				4列，
+				第一列%4值是0;第二列%4值是1;
+				第三列%4值是2;第四列%4值是3;
+			
+			for(var m=0;m<arr.length;m++){
+				if(m%4 == 0){
+					newArr.push(arr[m]);
+				}
+			}
+			for(var m=0;m<arr.length;m++){
+				if(m%4 == 1){
+					newArr.push(arr[m]);
+				}
+			}
+			for(var m=0;m<arr.length;m++){
+				if(m%4 == 2){
+					newArr.push(arr[m]);
+				}
+			}
+			for(var m=0;m<arr.length;m++){
+				if(m%4 == 3){
+					newArr.push(arr[m]);
+				}
+			}
+
+			return newArr;
+		}*/
+		function changeXY(arr,size){
+			var newArr = [];
+			var iNow = 0;
+
+			(function(){
+				if(size == iNow){
+					return;
+				}
+				for(var m=0;m<arr.length;m++){
+					if(m%size == iNow){
+						newArr.push(arr[m]);
+					}
+				}
+				iNow++;
+				arguments.callee();//调用自执行函数，实现递归
+			})();
+			
+			return newArr;
+		}
+	</script>
+</body>
+</html>

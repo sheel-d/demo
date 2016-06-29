@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>行列互换矩阵</title>
+	<style>
+		*{
+			padding: 
+		}
+		*{
+			margin:0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#ul1{
+			margin: 20px auto;
+			overflow: hidden;
+			background: #003;
+		}
+		#ul1 li{
+			float: left;
+			background-size: cover;
+		}
+		#ul1 li.box0{
+			background: url(img/1-1.jpg) no-repeat;
+		}
+		#ul1 li.box1{
+			background: url(img/2-1.jpg) no-repeat;
+		}
+		#ul1 li.box2{
+			background: url(img/3-1.jpg) no-repeat;
+		}
+		#ul1 li.box3{
+			background: url(img/4-1.jpg) no-repeat;
+		}
+		#ul1 li.box4{
+			background: url(img/5-1.jpg) no-repeat;
+		}
+		#ul1 li.box5{
+			background: url(img/6-1.jpg) no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<ul id="ul1"></ul>
+	<script>
+		var oUl = document.querySelector('#ul1');
+		var aLi = oUl.getElementsByTagName('li');
+		var size = 7;
+		var len = size * size;
+		var sizeGird = 70;
+
+		oUl.style.width = sizeGird * size + 'px';
+
+		for(var i=0;i<len;i++){
+			var oLi = document.createElement('li');
+			oLi.style.width = sizeGird + 'px';
+			oLi.style.height = sizeGird + 'px';
+			oLi.className = 'box' + Math.floor(Math.random()*6);
+			oUl.appendChild(oLi);
+		}
+
+		findElem();
+		function findElem(){
+			var result = [];
+
+			function addArr(aLi){
+				var iNum = 0;
+				var prevLi = aLi[0];
+
+				for(var i=0;i<aLi.length;i++){
+					if(prevLi.className == aLi[i].className && i%size != 0){
+						iNum++;
+					}else{
+						if(iNum >= 2){
+							for( var j=0;j<=iNum;j++){
+								if(toCon(aLi[(i-1)-j])){
+									result.unshift(aLi[(i-1)-j]);
+								}
+								
+							}
+						}
+						iNum = 0;
+					}
+					prevLi = aLi[i];
+				}
+			}
+			function toCon(li){//去掉重复
+				for(var i=0;i<result.length;i++){
+					if(result[i] == li){
+						return false;
+					}
+				}
+				return true;
+			}
+			addArr(aLi);
+			addArr(changeXY(aLi,size));		
+			console.log(result);
+
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].style.opacity = 0.3;
+			}
+			for(var i=0;i<result.length;i++){
+				result[i].style.opacity = 1;
+			}
+		}
+		
+
+		function changeXY(arr,size){
+			var newArr = [];
+			var iNow = 0;
+
+			(function(){
+				if(size == iNow){
+					return;
+				}
+				for(var m=0;m<arr.length;m++){
+					if(m%size == iNow){
+						newArr.push(arr[m]);
+					}
+				}
+				iNow++;
+				arguments.callee();//调用自执行函数，实现递归
+			})();
+			
+			return newArr;
+		}
+	</script>
+</body>
+</html>

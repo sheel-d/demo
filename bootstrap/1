@@ -1,0 +1,181 @@
+什么是bootstrap？
+    简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。
+    来自Twitter，是目前很受欢迎的前端框架之一。
+    Bootstrap是基于HTML、CSS、JavaScript的，让书写代码更容易。
+    移动优先，响应式布局开发。
+
+bootstrap资源
+    http://getbootstrap.com/
+    https://github.com/twbs
+    http://www.bootcss.com/  => 中文网
+        - 下载
+        - 基于JQ
+        - 引入
+
+bootstrap栅格系统：
+    容器
+        - container-fluid： 流体布局
+        - container：固定布局,不同的分辨率，固定的值不一样
+            >> 1170
+            >> 970
+            >> 750
+            >> auto
+    概念
+        - 分12列
+            >> row：行
+            >> col：列
+        - 阈值
+            >> 1200>=
+            >> 992>=
+            >> 768>=
+            >> 768<
+
+  !important 提高优先级
+ ----- 1.html
+
+    概念
+        - 语法
+            >> col-lg-* ： 大屏幕的范围
+            >> col-md-* ： 中等屏幕的范围
+            >> col-sm-* ： paid的范围
+            >> col-xs-* ： 移动端的范围
+            与上面的阈值对应
+        - 组合模式：可以将上面的4种组合在一起展示的
+            >> 实例：bootstrap官网
+ ----- 2.html  3.html(实例)
+
+    其他
+        - 列偏移
+            >> col-[*]-offset-* //向右偏移的距离 偏移的最大距离是12，最小1
+
+        - 列排序
+            >> col-[*]-push-* //往右
+            >> col-[*]-pull-* //往左
+        - 嵌套
+        - 清浮动
+            offset与push、pull的区别：
+                1、 offset只能向右偏移，而push可以左右偏移
+                2、 offset当一行有多个元素是，在本行显示不下的时候，会在第二行的一样的位置显示，
+                    而pull则会在本行显示
+ ----- 4.html
+
+    响应式工具
+        概念
+            - 针对不同设备展示或隐藏页面内容
+        可见类
+            - visible-*-* ： visible-lg-block
+                >> lg md sm xs
+                >> block inline inline-block
+            - hidden-* ： hidden-sm
+        打印类
+            - visible-print-*  hidden-print
+        实例：天猫侧边栏
+ ----- 5.html 6.html(实例) 7.html
+
+    Glyphicons字体图标
+        好处
+            - 减少请求
+            - 容易控制样式
+            - 实例：淘宝
+        用法
+            - font-face ：是写字体路径的
+            - 字体路径
+ ----- 8.html
+
+    预定义样式风格
+        primary( 首选项 )
+        success( 成功 )
+        info( 一般信息 )
+        warning( 警告 )
+        danger( 危险 )
+        实例：登录框
+ ----- 9.html 10.html(实例)
+
+    按钮
+        基类
+            - btn
+        样式
+            - btn-default( 默认 )
+            - btn-link( 链接 )
+        大小
+            - btn-*[lg,sm,xs]
+        状态
+            - active
+            - disabled
+        种类
+            - a , input , button
+        块级
+            - btn-block
+        按钮组
+            - btn-group
+            - btn-group-justified ：按钮的端点对齐,a标签是可以这样周的，但是input 和button标签是不行的，需要加一个父级
+            - btn-group-vertical : 默认是横向的，添加这个class就可以改纵向的，写纵向的按钮不用加btn-group
+        实例：github 按钮组
+ ----- 11.html 12.html 13.html(实例)
+
+    下拉菜单
+        属性
+            - data-* ：与js交互有关的，比如点击按钮下拉选项卡显示隐藏
+            - aria-* ：H5提供的属性，
+            - role ：H5提供的属性，
+        open
+        dropdown-menu-right ：让下拉菜单靠右
+        dropdown-header ： 下拉菜单的头部
+        divider  ：分割线
+
+        text-center : 文字居中的class名
+        实例 ：运动且带图标的菜单
+ ----- 14.html 15.html 16.html( 实例 ) 17.html 18.html
+
+    标签页 ->选项卡
+        头部
+            - nav
+            - nav-tabs.
+            - nav-justified ：端点对齐的展示方式
+            - nav-tabs-justified
+            - nav-pills
+            - nav-stacked : 竖状菜单显示,tabs不行，只有pills可以用
+            - 带下拉菜单的头部
+ ----- 19.html
+        内容
+            - tab-content
+            - tab-pane
+            - data-toggle = "tab"
+            - href对应id
+            - 淡入淡出方式 : fade
+            - 鼠标移入方式
+            - 带下拉菜单的切换
+ ----- 20.html
+
+    导航条
+        navbar
+        navbar-default
+        nav navbar-nav
+        navbar-inverse
+        navbar-static-top
+        navbar-fixed-top : 固定在页面可视区头部的导航条，不会隐藏
+        navbar-fixed-bottom : 固定在页面可视区底部的导航条，不会隐藏
+        遮挡内容的问题
+            - 1:给body加一个margin-top，就可以了
+ ----- 20.html 21.html 22.html
+
+        navbar-header
+        navbar-brand
+        navbar-left
+        navbar-right
+        navbar-btn
+        navbar-link
+        navbar-text
+        navbar-form
+        实例：知乎导航条
+ ----- 23.html 24.html( 实例 )
+
+        下拉菜单
+        响应式导航条
+            - navbar-toggle
+            - collapse nav-collapse
+        滚动监听
+            - data-spy
+            - data-target
+            - data-offset : 在距离顶端多少距离的时候触发
+ ----- 25.html 26.html
