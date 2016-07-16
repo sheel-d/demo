@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{this.props.author}</title>
+	<script src="js/react.js"></script>
+	<script src="js/react-dom.js"></script>
+	<script src="js/browser.min.js"></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<script type="text/babel">
+		var data = [
+			{
+				id : 1,
+				author : "sheel",
+				text : "This is one comment"
+			},
+			{
+				id : 2,
+				author : "sheel_d",
+				text : "This is two comment"
+			}
+		];
+
+		var CommentBox = React.createClass({
+			render : function(){
+				return (
+					<div classNmae='CommentBox'>
+						<h1>Hello,world!I am a CommentBox.</h1>
+						<CommentList data={this.props.data} />
+						<CommentForm />
+					</div>
+				);
+			}
+		});
+
+		var CommentList = React.createClass({
+			render : function(){
+				var commentNodes = this.props.data.map(function(comment){
+					return (
+						<Comment author={comment.author} key={comment.id} children={comment.text} />
+					);
+				});
+				return (
+					<div className="CommentList">
+						{commentNodes}
+					</div>
+				);
+			}
+		});
+	
+		var Comment = React.createClass({
+			render : function(){
+				return (
+					<div className="comment">
+						<h2 className="commentAuthor">
+							{this.props.author}
+						</h2>
+						<p>
+							{this.props.children}
+						</p>
+					</div>
+				);
+			}
+		});
+
+		var CommentForm = React.createClass({
+			handleSubmit : function(e){
+				e.preventDefault();
+				var author = this.refs.author.value.trim();
+				var text = this.refs.text.value.trim();
+				if(!text || !author){
+					return;
+				}
+				this.refs.author.value = "";
+				this.refs.text.value = "";
+				return;
+			},
+			render : function(){
+				return (
+					<div className="CommentFrom">
+						<h2>Hello,word!I am a CommentForm.</h2>
+						<form classNnme="from">
+							<input type="text" placeholder="Your name" ref="author" />
+							<input type="text" placeholder="Say something ..." ref="text" />
+							<input type="submit" value="Post" />
+						</form>
+					</div> 
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<CommentBox data={data} />,
+			document.getElementById('demo'),
+			function(){
+				alert('OK');
+			}
+		)
+	</script>
+	<script>
+		/*
+			让我们使表单可交互。当用户提交表单的时候，我们应该清空表单，发送一个请求到服务器，然后刷新评论列表。首先，让我们监听表单的提交事件，然后清空表单:handleSubmint
+			
+			事件
+
+			React 使用驼峰命名规范的方式给组件绑定事件处理器。我们给表单绑定一个onSubmit处理器，用于当表单提交了合法的输入后清空表单字段。
+			在事件回调中调用 preventDefault() 来避免浏览器默认地提交表单。
+
+			Refs
+			利用 ref 属性给子组件命名，通过 this.refs 引用 DOM 节点。
+		*/
+	</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/react.js"></script>
+	<script src="js/react-dom.js"></script>
+	<script src="js/browser.min.js"></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<script type="text/babel">
+		var CommentBox = React.createClass({
+			render : function(){
+				return (
+					<div classNmae='CommentBox'>
+						<h1>Hello,world!I am a CommentBox.</h1>
+						<CommentList />
+						<CommentForm />
+					</div>
+				);
+			}
+		});
+
+		var CommentList = React.createClass({
+			render : function(){
+				return (
+					<div className="CommentList">
+						<h2>hello,wordl!I am a CommentList.</h2>
+						<Comment author="sheel" children="This is one comment" />
+						<Comment author="sheel_d" children="This is two comment" /> 
+					</div>
+				);
+			}
+		});
+		
+		var Comment = React.createClass({
+			render : function(){
+				return (
+					<div className="comment">
+						<h2 className="commentAuthor">
+							{this.props.author}
+						</h2>
+						<p>
+							{this.props.children}
+						</p>
+					</div>
+				);
+			}
+		});
+
+		var CommentForm = React.createClass({
+			render : function(){
+				return (
+					<div className="CommentFrom">
+						<h2>Hello,word!I am a CommentForm.</h2>
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<CommentBox />,
+			document.getElementById('demo'),
+			function(){
+				alert('OK');
+			}
+		)
+	</script>
+</body>
+</html>

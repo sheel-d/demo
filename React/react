@@ -88,7 +88,7 @@ props和state
 
 
      React Components的生命周期
-        三个状态：Mounted ----> Update ------> Unmounted
+        三个状态：Mounted（初始） ----> Update（更新） ------> Unmounted（销毁）
         Mounted：React Components被render解析生成对应的DOM节点被插入浏览的DOM结构的过程
         Update：一个mounted的React Components被重新render的过程
         Unmounted：一个mounted的React Components对应的DOM节点被从DOM结构中移除的这样一个过程
@@ -110,3 +110,52 @@ props和state
         当我们要把一个React Components销毁掉的时候就是Unmounted阶段
         componentWillUnmount：在这个函数中可以去执行一些释放内存资源，图片资源
         一般来说使用的很少
+
+
+react都是构建可复用的组件，
+react组价只能渲染单个根节点。如果要是想要返回多个节点，它们必须被包含在同一个节点里面。
+
+react渲染HTML标签，只需要使用首字母小写的标签名，
+要渲染React组件，只需创建一个大写字母开头的本地变量。
+
+由于 JSX 就是 JavaScript，一些标识符像 class 和 for 不建议作为 XML 属性名。作为替代，React DOM 使用 className 和 htmlFor 来做对应的属性。
+
+属性表达式
+要使用 JavaScript 表达式作为属性值，只需把这个表达式用一对大括号({}) 包起来，不要用引号("")。注释
+
+JSX 里添加注释很容易；它们只是 JS 表达式而已。你只需要在一个标签的子节点内(非最外层)小心地用 {} 包围要注释的部分。
+
+注释
+JSX里添加注释很容易；它们只是JS 表达式而已。你只需要在一个标签的子节点内(非最外层)小心地用{}包围要注释的部分。
+{/*  kkkkk */}
+
+Props 应该被当作禁止修改的。修改 props 对象可能会导致预料之外的结果，所以最好不要去修改 props 对象。
+
+...是一个延展操作符
+
+
+jsx陷阱
+自定义的HTML属性要使用data-前缀
+自定义元素支持任意属性
+以 aria- 开头的 [网络无障碍] 属性可以正常使用。
+<div aria-hidden={true} />
+
+
+React 组件的生命周期有三个阶段：初始阶段(Mounting)、更新阶段(Updating)、销毁阶段(Unmounting).
+
+初始阶段(Mounting)
+getDefaultProps：只调用一次，实例之间共享引用
+getInitialState：初始化每个实例特有的状态，调用它时必须返回一个对象
+componentWillMount：render 之前最后一次修改状态的机会
+render：只能访问 this.props 和 this.state ，只有一个顶层组件，不允许修改状态和 DOM 输出
+componentDidMount：成功 render 并渲染完成真实的 DOM 触发，可以修改 DOM（ 可尝试使用 React.findDOMNode(this) ）
+
+更新阶段(Mounting)
+componentWillReceiveProps：父组件修改属性触发，应用在子组件上，可修改修改新属性、修改状态
+shouldComponentUpdate：返回一个布尔值，返回 false会阻止更新，相应地，后面的函数就不会调用了。如在上面例子当中，当 this.state.num 大于 10 过后，页面就不会再更新了。
+componentWillUpdate：不能修改属性和状态
+render：只能访问 this.props 和 this.state ，只有一个顶层组件，不允许修改状态和 DOM 输出
+componentDidUpdate：可以修改DOM
+
+销毁阶段(Unmounting)
+componentWillUnmount：在删除组件之前进行清理操作，比如计时器和事件监听.

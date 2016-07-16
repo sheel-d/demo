@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>从服务器获取数据</title>
+	<script src="js/react.js"></script>
+	<script src="js/react-dom.js"></script>
+	<script src="js/browser.min.js"></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<script type="text/babel">
+		var data = [
+			{
+				id : 1,
+				author : "sheel",
+				text : "This is one comment"
+			},
+			{
+				id : 2,
+				author : "sheel_d",
+				text : "This is two comment"
+			}
+		];
+
+		var CommentBox = React.createClass({
+			loadCommentsFromServer : function(){
+				$.ajax({
+					url : this.props.url,
+					dataType : 'json',
+					cache : false,
+					success : function(data){
+						this.setState({data:data});
+					}.bind(this),
+					error : function(xhr,status,err){
+						console.error(this.props.url,status,err.toString());
+					}.bind(this)
+				});
+			},
+			getInitialState : function(){
+				return {data:[]};
+			},
+			componentDidMount : function(){
+				this.loadCommentsFromServer();
+    			setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+			},
+			render : function(){
+				return (
+					<div classNmae='CommentBox'>
+						<h1>Hello,world!I am a CommentBox.</h1>
+						<CommentList data={this.state.data} />
+						<CommentForm />
+					</div>
+				);
+			}
+		});
+
+		var CommentList = React.createClass({
+			render : function(){
+				var commentNodes = this.props.data.map(function(comment){
+					return (
+						<Comment author={comment.author} key={comment.id} children={comment.text} />
+					);
+				});
+				return (
+					<div className="CommentList">
+						{commentNodes}
+					</div>
+				);
+			}
+		});
+	
+		var Comment = React.createClass({
+			render : function(){
+				return (
+					<div className="comment">
+						<h2 className="commentAuthor">
+							{this.props.author}
+						</h2>
+						<p>
+							{this.props.children}
+						</p>
+					</div>
+				);
+			}
+		});
+
+		var CommentForm = React.createClass({
+			render : function(){
+				return (
+					<div className="CommentFrom">
+						<h2>Hello,word!I am a CommentForm.</h2>
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<CommentBox url="/api/comments" pollInterval={2000} />,
+			document.getElementById('demo'),
+			function(){
+				alert('OK');
+			}
+		)
+	</script>
+	<script>
+		/*
+		从服务器获取数据：
+			从服务器动态获取的数据替换硬编码的数据，只要删掉data属性，使用一个URL来获取数据;将上面的<CommentBox data={data} />改成<CommentBox url="/api/comments" />。
+			这个组件和前面的组件是不一样的，因为它必须重新渲染自己。在服务器请求返回之前，该组件将不会有任何数据，请求返回之后，该组件或许要渲染一些新的评论。
+
+		响应状态变化（state）
+			到目前为止，每一个组件都根据自己的 props 渲染了自己一次。 props 是不可变的：它们从父组件传递过来，“属于”父组件。为了实现交互，我们给组件引入了可变的 state 。this.state 是组件私有的，可以通过调用 this.setState() 来改变它。当 state 更新之后，组件就会重新渲染自己。
+
+			render() 方法依赖于 this.props 和 this.state ，框架会确保渲染出来的 UI 界面总是与输入（ this.props 和 this.state ）保持一致。
+
+			getInitialState() 在组件的生命周期中仅执行一次，用于设置组件的初始化 state 。
+
+			更新 state:
+			当组件第一次创建的时候，我们想从服务器获取（使用 GET 方法）一些 JSON 数据来更新状态，以便展示最新的数据。我们将会使用 jQuery 发送一个异步请求到我们之前启动好的服务器，获取我们需要的数据。数据格式和相应代码看起来会是这个样子：
+			[
+			  	{
+			  		id : 1,
+			  		author: "sheel", 
+			  		text: "This is one comment"},
+			  	{
+			  		id : 2,
+			  		author: "sheel_d",
+			  		 text: "This is two comment"}
+			]
+			
+			componentDidMount 是一个组件渲染的时候被 React 自动调用的方法。动态更新界面的关键点就是调用 this.setState() 。我们用新的从服务器拿到的评论数组来替换掉老的评论数组，然后 UI 自动更新。
+
+			把 AJAX 调用移到一个分离的方法中去，在组件第一次加载的时候，以及之后每隔两秒钟，调用一下这个方法。尝试在你的浏览器中运行这些代码，然后改变 comments.json 文件（在 server 源码文件夹中）；在两秒钟之内，改动将会显示出来！
+		*/
+	</script>
+</body>
+</html>
